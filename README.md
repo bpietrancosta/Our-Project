@@ -5,7 +5,7 @@
 ## 1. Project Management
 
 ### 1.1 Project Overview:
-This is a UCF Data Analytics Bootcamp Final Project. The aim of this project is to develop an accurate and reliable regression model for predicting depression rates in a given FIPS code area utilizing various parameters such as health, employment, economics, education, transportation and weather. 
+This is a UCF Data Analytics Bootcamp Final Project. The aim of this project is to develop an accurate and reliable regression model for predicting depression rates in a given FIPS code area utilizing various parameters such as health, employment, economics, education and transportation. 
 The reason we chose this topic is because of it's relevance in the post-COVID world. Rates of depression and anxiety have greatly increased as social isolation has followed. Hopefully, this analysis allows us to better pinpoint what drives these mental fitness issues and consequently how to best address them.
 
 ### 1.2 Project Breakdown:
