@@ -58,8 +58,8 @@ The Base_Data_Preprocessed folder in this Github project includes the Jupyter no
  The data provided statistics about tax returns filed with the IRS for calendar year 2020.  The data was aggregated at a ZIP code level, which is more granular than the census bureau’s FIPS-level data from the Health section, so the data was preprocessed using a ZIP-to-FIPS lookup table (source: https://www.huduser.gov/portal/datasets/usps_crosswalk.html).  Note that several of the ZIP codes in the IRS data were dummied out (either 0 or 99999) to indicate unincorporated areas of the US that are sparsely populated.  These were not represented in the health data where the target variable exists and so were dropped.
 The IRS_Data_Preprocessed folder in this Github project includes the Jupyter notebook detailing the preprocessing work, as well as the input, output, and lookup files used during that process.  Note the input and output files are too large to reside in Github, even when compressed, and are instead being housed in Google Drive.
 
-Zipped input data: https://drive.google.com/file/d/17HMKhdgRNU5yGKHq19cjoxg6uv_Pf79Z/view?usp=share_link
-Zipped output table: https://drive.google.com/file/d/11eJMIpOyufbllNchf0cIOE2lCP3-Chtx/view?usp=share_link
+ Zipped input data: https://drive.google.com/file/d/17HMKhdgRNU5yGKHq19cjoxg6uv_Pf79Z/view?usp=share_link
+ Zipped output table: https://drive.google.com/file/d/11eJMIpOyufbllNchf0cIOE2lCP3-Chtx/view?usp=share_link
 
 - Transportation Data Preprocessing -> Source: https://data.bts.gov/Research-and-Statistics/County-Transportation-Profiles/qdmf-cxm3. This data set provides information concerning transportation measures per county. It was filtered down to columns which were deemed relevant to depression. Also, there is no confirmed timeframe for this data, but we are operating under the assumption that it also belongs to 2020.
 - Employment Data Preprocessing -> Source: https://www.bls.gov/cew/downloadable-data-files.htm. This data set provides a log of the average salary for various job occupations. The data is sorted by FIPS and by NAICS Industy codes. We downloaded the annual singlefile dataset as opposed to quarterly to get as much datapoints in as possible on one table. The table includes over the year changes in income as well as specific location data per industry recording income averages and taxible wages. We determined that for our purposes we only needed the FIPS code, Industry code and average wage columns. These were cleaned and put in a separate csv. A table of the job titles that correspond with their industry code was also generated to be used as as a foreign key for data lookup later.
@@ -69,7 +69,9 @@ Zipped output table: https://drive.google.com/file/d/11eJMIpOyufbllNchf0cIOE2lCP
 We'll be hosting the database on an AWS instance (Ryan to fill in details).
 
 ### 3.2 Database design:
-(Insert DB schema)
+Our database will consist of 6 tables and one reference table. The detail on each has been discussed in the previous section. Below is the schema we produced in Quick DBD. To note, one of the tables contains 100 + columns as it corresponds to line items on tax returns. Therefore, the schema view will be very zoomed out, to view the schema in greater detail you can access the "Database design and build" folder in the root directory which will contain the PNG of the schema which can be zoomed into to greater effect.
+
+![DB schema](https://user-images.githubusercontent.com/114181709/223890198-c627e492-2b30-4f58-a654-1104a93a32e6.png)
 
 
 ## 4. The Models
