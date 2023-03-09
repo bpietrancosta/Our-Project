@@ -91,7 +91,7 @@ The visualizations for the project will include:
 1.	A series of performance results tables showing comparative accuracy for the various models and their iterations.
 2.	An interactive Tableau dashboard that shows the FIPS regions across the US and an information block on hover with the target variable and the data points found to be most impactful on predicting the target variable (when considering the model with the best performance).
 
-The purpose of this second visualization would be for someone to quickly see how prevalent depression is within a given FIPS region and what characteristics of that region (crime, poverty, education) most impact the level of depression.
+The purpose of this second visualization would be for someone to quickly see how prevalent depression is within a given FIPS region and what characteristics of that region (poverty, education) most impact the level of depression.
 
 
 ## Conclusions
