@@ -65,7 +65,7 @@ Zipped output table: https://drive.google.com/file/d/11eJMIpOyufbllNchf0cIOE2lCP
 
 ## 3. Database design and build
 ### 3.1 Cloud environment:
-We'll be hosting the database on an AWS instance (Ryan to fill in details).
+We'll be hosting the database on an AWS instance.
 
 ### 3.2 Database design:
 Our database will consist of 6 tables and one reference table. The detail on each has been discussed in the previous section. Below is the schema we produced in Quick DBD. To note, one of the tables contains 100 + columns as it corresponds to line items on tax returns. Therefore, the schema view will be very zoomed out, to view the schema in greater detail you can access the "Database design and build" folder in the root directory which will contain the PNG of the schema which can be zoomed into to greater effect.
