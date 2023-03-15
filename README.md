@@ -131,8 +131,6 @@ LASSO regression is able to both overcome multicollinearity and also performs so
 
 Both the R^2 value and mean absolute error were worse than the ridge regression.  In addition, only two of the coefficients were set to zero, which did not help with reducing the feature space even further:
 
-![IMG](Resources/lasso_reg_coef.png)
-
 ### Random Forest Regression on Scaled Data
 
 The team did not find with success with using regression on the scaled data set.  One possibility was that, while there was a relationship between the target and feature variables, the relationship was not linear and thus the prior regression models would not perform well.  The team then turned to the random forest regression machine learning model to predict depression rates, as it can handle non-linear relationships.
