@@ -89,7 +89,7 @@ Prior to attempting the regression, we wanted to understand the distribution of 
 
 ![IMG](Resources/dep_hist.png)
 
-![IMG](Resources/dep_hist.png)
+![IMG](Resources/dep_table.png)
 
 A few key notes:
 1.	The target variable will sit between 10 and 30 but appears normally distributed, so we expect most of the training and test data percentages to sit close to 20 percentage points.
@@ -107,7 +107,7 @@ The individual data sets for health, income, transportation, and industry were j
 
 We first used ordinary least squares regression to predict the depression rate of our test data.  Below are the results:
 
-IMAGEXXXXXXXXXXXXXXXXX
+![IMG](Resources/ols_reg_res.png)
 
 While the mean absolute error of the test data was only 0.78 (meaning less than 1% point difference between predicted and actual depression rate) the R^2 value was only 0.045, implying the data we included in our model only explains about 5% of the variance of depression rates.
 
@@ -115,11 +115,11 @@ While the mean absolute error of the test data was only 0.78 (meaning less than 
 
 Ridge regression is useful when there are likely issues with multicollinearity.  Below is a table of the VIF factors calculated at the end of our iterative feature selection process:
 
-IMAGE XXXXXXXXXXXXXXXXXXXXXX
+![IMG](Resources/vif.png)
 
 Ideally one would want VIF values below 10; most of the values in the summary table are well above that, indicating multicollinearity is still an issue.  We used ridge regression to compare performance to the OLS baseline, see below results:
 
-IMAGE XXXXXXXXXXXXXXXXXXXXX
+![IMG](Resources/ridge_reg_res.png)
 
 The mean absolute error of the test data was more than double that of the OLS, but the R^2 value increased which implies that a regularized model to deal with multicollinearity shows more of a relationship between the independent and target variables.
 
@@ -127,9 +127,11 @@ The mean absolute error of the test data was more than double that of the OLS, b
 
 LASSO regression is able to both overcome multicollinearity and also performs some feature selection by reducing the coefficients of less relevant independent variables to zero.  Below is the results table:
 
-IMAGE XXXXXXXXXXXXXXXXXXXXXX
+![IMG](Resources/lasso_reg_res.png)
 
-Both the R^2 value and mean absolute error were worse than the ridge regression.  In addition, only two of the coefficients were set to zero, which did not help with reducing the feature space even further.
+Both the R^2 value and mean absolute error were worse than the ridge regression.  In addition, only two of the coefficients were set to zero, which did not help with reducing the feature space even further:
+
+![IMG](Resources/lasso_reg_coef.png)
 
 ### Random Forest Regression on Scaled Data
 
@@ -137,7 +139,7 @@ The team did not find with success with using regression on the scaled data set.
 
 While random forests can handle unscaled data and a large feature set, we attempted to run the model on the same data set as the regression models and then compare performance.  Below are the results of the model (note that we used grid search to search for the optimal max tree depth and then ran the model using that optimal value):
 
-IMAGE XXXXXXXXXXXXXXXXXXXXXXX
+![IMG](Resources/rf_trans_res.png)
 
 Mean absolute error was higher than OLS but the R^2 value was significantly better than any of the regressions (67% of depression rate variance explained by the set of features we included).
 
@@ -146,17 +148,19 @@ Mean absolute error was higher than OLS but the R^2 value was significantly bett
 Recall that the team used VIF to eliminate 11 features with multicollinearity.  We wanted to know if these removed features added any predictive value to the model.  Because decision trees are not sensitive to multicollinearity, we returned back to the base data set with all 30 features and unscaled numeric values.
 Below are the results:
 
-IMAGE XXXXXXXXXXXXXXXXX
+![IMG](Resources/rf_untrans_smoke_res.png)
 
 Note that the mean error is still higher than OLS but the R^2 is now increased to 0.71.  We can also look at the most important features in the random forest when it comes to predicting depression rate:
 
-IMAGE XXXXXXXXXXXXXXXXXXXXXXX
+![IMG](Resources/pp_smoking.png)
 
 The table tells us that the number of smokers explains 41% of the rate of depression in the county.  The team discussed and felt that the opposite might actually be true: that smoking is a sign of depression and not a cause.  We then removed the smoking variable and retuned/reran the random forest regression to get the following results:
 
+![IMG](Resources/rf_untrans_res.png)
+
 The model did not perform as well as when smoking statistics were included, but if smoking truly is a symptom and not a cause then having it present was causing false results.  And finally, the below table shows the 30 included variables and the percent impact they had on predicting depression rates:
 
-IMAGE XXXXXXXXXXXXXXXXXXXXX
+![IMG](Resources/pp_no_smoking.png)
 
 The top five features (lack of sleep, lack of health insurance, no leisure time, and lack of dental/doctor visits) account for more than half of the total predictive power of depression rates.
 
