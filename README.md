@@ -79,7 +79,7 @@ Our database will consist of 6 tables and one reference table. The detail on eac
 Because we are predicting a continuous numerical variable, there are a set of specific machine learning models that we can consider for the project.  They include:
 
 1.	Linear regression – the model is the least resource-intensive but can also overfit or be sensitive to outliers.  We will apply feature selection/feature reduction methods to see if we can improve performance but will consider this as the baseline for the project.
-2. Ridgre regression - a variation of linear regression that uses L2 regularization to overcome any multicollinearity issues with the data.
+2. Ridge regression - a variation of linear regression that uses L2 regularization to overcome any multicollinearity issues with the data.
 2.	LASSO regression – LASSO regression is a variation of regression that reduces the coefficient of some variables to zero, effectively conducting feature selection as part of the regression process.  This might also inform further iterations of linear regression with a smaller data set or revised data to feed into other models.
 3.	Random forest regression – this is a variation of the random forest classification model used in the program; instead of predicting a class, the model attempts to predict a specific numeric outcome based on the path traveled through the decision tree.  This might prove useful if the relationship between the target and independent variables is non-linear.
 
