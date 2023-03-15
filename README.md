@@ -154,7 +154,7 @@ Note that the mean error is still higher than OLS but the R^2 is now increased t
 
 The table tells us that the number of smokers explains 41% of the rate of depression in the county.  The team discussed and felt that the opposite might actually be true: that smoking is a sign of depression and not a cause.  We then removed the smoking variable and retuned/reran the random forest regression to get the following results:
 
-![IMG](Resources/rf_untrans_res.png)
+![IMG](Resources/rf_untrans_res_2.png)
 
 The model did not perform as well as when smoking statistics were included, but if smoking truly is a symptom and not a cause then having it present was causing false results.  And finally, the below table shows the 30 included variables and the percent impact they had on predicting depression rates:
 
