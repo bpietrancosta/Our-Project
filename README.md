@@ -87,8 +87,9 @@ Because we are predicting a continuous numerical variable, there are a set of sp
 
 Prior to attempting the regression, we wanted to understand the distribution of our target variable.  See below histogram and summary table:
 
-IMAGE XXXXXXXXXXXXXXXXXXXXXXXXXXX
-IMAGE XXXXXXXXXXXXXXXXXXXXXXXXXXX
+![IMG](Resources/dep_hist.png)
+
+![IMG](Resources/dep_hist.png)
 
 A few key notes:
 1.	The target variable will sit between 10 and 30 but appears normally distributed, so we expect most of the training and test data percentages to sit close to 20 percentage points.
