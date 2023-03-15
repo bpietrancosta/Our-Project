@@ -152,7 +152,7 @@ Below are the results:
 
 Note that the mean error is still higher than OLS but the R^2 is now increased to 0.71.  We can also look at the most important features in the random forest when it comes to predicting depression rate:
 
-![IMG](Resources/pp_smoking.png)
+![IMG](Resources/pp_smoking.PNG)
 
 The table tells us that the number of smokers explains 41% of the rate of depression in the county.  The team discussed and felt that the opposite might actually be true: that smoking is a sign of depression and not a cause.  We then removed the smoking variable and retuned/reran the random forest regression to get the following results:
 
@@ -160,7 +160,7 @@ The table tells us that the number of smokers explains 41% of the rate of depres
 
 The model did not perform as well as when smoking statistics were included, but if smoking truly is a symptom and not a cause then having it present was causing false results.  And finally, the below table shows the 30 included variables and the percent impact they had on predicting depression rates:
 
-![IMG](Resources/pp_no_smoking.png)
+![IMG](Resources/pp_no_smoking.PNG)
 
 The top five features (lack of sleep, lack of health insurance, no leisure time, and lack of dental/doctor visits) account for more than half of the total predictive power of depression rates.
 
