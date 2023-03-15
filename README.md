@@ -75,14 +75,89 @@ Our database will consist of 6 tables and one reference table. The detail on eac
 
 ## 4. The Models
 
-The Model
+### Selected Models
 Because we are predicting a continuous numerical variable, there are a set of specific machine learning models that we can consider for the project.  They include:
 
 1.	Linear regression – the model is the least resource-intensive but can also overfit or be sensitive to outliers.  We will apply feature selection/feature reduction methods to see if we can improve performance but will consider this as the baseline for the project.
+2. Ridgre regression - a variation of linear regression that uses L2 regularization to overcome any multicollinearity issues with the data.
 2.	LASSO regression – LASSO regression is a variation of regression that reduces the coefficient of some variables to zero, effectively conducting feature selection as part of the regression process.  This might also inform further iterations of linear regression with a smaller data set or revised data to feed into other models.
 3.	Random forest regression – this is a variation of the random forest classification model used in the program; instead of predicting a class, the model attempts to predict a specific numeric outcome based on the path traveled through the decision tree.  This might prove useful if the relationship between the target and independent variables is non-linear.
 
-The methodology for each will be to conduct some sort of preprocessing and scaling against the base flat table based on the conditions the model requires and then use a cross-validation technique to hypertune (using a split of train/test data) before running a set of segregated validation data through for final results.
+### Target Variable EDA
+
+Prior to attempting the regression, we wanted to understand the distribution of our target variable.  See below histogram and summary table:
+
+IMAGE XXXXXXXXXXXXXXXXXXXXXXXXXXX
+IMAGE XXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+A few key notes:
+1.	The target variable will sit between 10 and 30 but appears normally distributed, so we expect most of the training and test data percentages to sit close to 20 percentage points.
+2.	RMSE might not be the best indicator of model performance because the range is fairly small and, in the real world, there likely isn’t a huge difference between counties with 20% and 21% depression rates, as an example.  We therefore turn our focus to determining what factors are most likely attributed to depression.
+
+### Regression Data Preprocessing
+
+The individual data sets for health, income, transportation, and industry were joined at the FIPS code/county level and then transformed and modified to prepare for the series of regressions.  Specifically:
+
+1.	There were approximately 2,300 features in the final data frame.  The team manually reviewed each of the data dictionaries for the individual data sets and selected a handful from each that they felt were most likely to impact depression rates.  We were left with 30 independent variables across all four sources.
+2.	Regression is sensitive to large differences in relative scale among independent variables.  The data was first split into training and test data (70%/30% respectively).  The transformer was fit on the training data and then both training and test data were transformed with that transformer.
+3.	One assumption on the data for regression is that the feature variables are independent of one another and that there is no multicollinearity.  We went through several iterations of calculating the variance inflation factor (VIF) for the set of feature variables and removing those with extremely high values; removing the highest-valued often significantly reduced the VIF values of others.  Eleven features in total were removed.
+
+### OLS Regression
+
+We first used ordinary least squares regression to predict the depression rate of our test data.  Below are the results:
+
+IMAGEXXXXXXXXXXXXXXXXX
+
+While the mean absolute error of the test data was only 0.78 (meaning less than 1% point difference between predicted and actual depression rate) the R^2 value was only 0.045, implying the data we included in our model only explains about 5% of the variance of depression rates.
+
+### Ridge Regression
+
+Ridge regression is useful when there are likely issues with multicollinearity.  Below is a table of the VIF factors calculated at the end of our iterative feature selection process:
+
+IMAGE XXXXXXXXXXXXXXXXXXXXXX
+
+Ideally one would want VIF values below 10; most of the values in the summary table are well above that, indicating multicollinearity is still an issue.  We used ridge regression to compare performance to the OLS baseline, see below results:
+
+IMAGE XXXXXXXXXXXXXXXXXXXXX
+
+The mean absolute error of the test data was more than double that of the OLS, but the R^2 value increased which implies that a regularized model to deal with multicollinearity shows more of a relationship between the independent and target variables.
+
+### LASSO Regression
+
+LASSO regression is able to both overcome multicollinearity and also performs some feature selection by reducing the coefficients of less relevant independent variables to zero.  Below is the results table:
+
+IMAGE XXXXXXXXXXXXXXXXXXXXXX
+
+Both the R^2 value and mean absolute error were worse than the ridge regression.  In addition, only two of the coefficients were set to zero, which did not help with reducing the feature space even further.
+
+### Random Forest Regression on Scaled Data
+
+The team did not find with success with using regression on the scaled data set.  One possibility was that, while there was a relationship between the target and feature variables, the relationship was not linear and thus the prior regression models would not perform well.  The team then turned to the random forest regression machine learning model to predict depression rates, as it can handle non-linear relationships.
+
+While random forests can handle unscaled data and a large feature set, we attempted to run the model on the same data set as the regression models and then compare performance.  Below are the results of the model (note that we used grid search to search for the optimal max tree depth and then ran the model using that optimal value):
+
+IMAGE XXXXXXXXXXXXXXXXXXXXXXX
+
+Mean absolute error was higher than OLS but the R^2 value was significantly better than any of the regressions (67% of depression rate variance explained by the set of features we included).
+
+### Random Forest Regression on Unscaled Original Data
+
+Recall that the team used VIF to eliminate 11 features with multicollinearity.  We wanted to know if these removed features added any predictive value to the model.  Because decision trees are not sensitive to multicollinearity, we returned back to the base data set with all 30 features and unscaled numeric values.
+Below are the results:
+
+IMAGE XXXXXXXXXXXXXXXXX
+
+Note that the mean error is still higher than OLS but the R^2 is now increased to 0.71.  We can also look at the most important features in the random forest when it comes to predicting depression rate:
+
+IMAGE XXXXXXXXXXXXXXXXXXXXXXX
+
+The table tells us that the number of smokers explains 41% of the rate of depression in the county.  The team discussed and felt that the opposite might actually be true: that smoking is a sign of depression and not a cause.  We then removed the smoking variable and retuned/reran the random forest regression to get the following results:
+
+The model did not perform as well as when smoking statistics were included, but if smoking truly is a symptom and not a cause then having it present was causing false results.  And finally, the below table shows the 30 included variables and the percent impact they had on predicting depression rates:
+
+IMAGE XXXXXXXXXXXXXXXXXXXXX
+
+The top five features (lack of sleep, lack of health insurance, no leisure time, and lack of dental/doctor visits) account for more than half of the total predictive power of depression rates.
 
 ## 5. Visualization
 
