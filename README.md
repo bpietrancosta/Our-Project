@@ -25,9 +25,8 @@ For all supplemental documentation such as contact information, roles, task assi
 Our responsibilities can be broken down as follows:
  - Chris -> SME in designing and implementing an ML model
  - Ryan -> SME in designing the AWS environment
- - Ali -> ETL specialist
- - Yessika -> Visualization
- - Ben Pietrancosta -> Github manager
+ - Ali -> Visualization specialist
+ - Ben Pietrancosta -> Github/Project manager
 
 ### 1.4 Timeline:
 We have 3 weeks to complete this project. Each week we will be required to meet pre-defined deliverables. We are expecting to spend upwards of 10 hours a week/each in order to realize the successful implementation of this project.
