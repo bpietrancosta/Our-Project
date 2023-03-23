@@ -170,5 +170,7 @@ The visualizations for the project will include:
 
 The purpose of this second visualization would be for someone to quickly see how prevalent depression is within a given FIPS region and what characteristics of that region (poverty, education) most impact the level of depression.
 
+Here is the link to the Tableau Visualizatio: https://public.tableau.com/views/PredictingDepressionRatesFinalProject/PredictingDepressionRates?:language=en-US&:display_count=n&:origin=viz_share_link
+
 
 ## Conclusions
