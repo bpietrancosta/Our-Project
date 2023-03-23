@@ -1,5 +1,5 @@
 
-# THIS README IS UNDER ACTIVE EDITING AS THE PROJECT PROGRESSES.
+# Predicting Depression Rates in the US
 
 
 ## 1. Project Management
