@@ -24,7 +24,7 @@ For all supplemental documentation such as contact information, roles, task assi
 
 Our responsibilities can be broken down as follows:
  - Chris -> SME in designing and implementing an ML model
- - Ryan -> SME in designing the AWS environment
+ - Ryan -> SME in designing the AWS environment and dataset management
  - Ali -> Visualization specialist
  - Ben Pietrancosta -> Github/Project manager
 
